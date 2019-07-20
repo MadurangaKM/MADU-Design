@@ -20,6 +20,8 @@ import MediaQuery from "react-responsive";
 import Switch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { useSelector, useDispatch } from "react-redux";
+import { CHANGE_DRAK_MODE } from "../redux/DrakModeReducer";
 
 const drawerWidth = 240;
 
@@ -100,8 +102,8 @@ export default function PersistentDrawerRight() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [darkmode, setDarkmode] = React.useState(false);
-
+  const ui = useSelector(state => state.ui);
+  const dispatch = useDispatch();
   function handleDrawerOpen() {
     setOpen(true);
   }
@@ -109,11 +111,10 @@ export default function PersistentDrawerRight() {
   function handleDrawerClose() {
     setOpen(false);
   }
-  function handleChange() {
-    darkmode ? setDarkmode(false) : setDarkmode(true);
-  }
-  const appBarColor = darkmode? 'linear-gradient(to right, #243B55, #141E30)': 'linear-gradient(to right, #c33764, #1d2671)'
-  
+  const appBarColor = ui.drakMode
+    ? "linear-gradient(to right, #243B55, #141E30)"
+    : "linear-gradient(to right, #c33764, #1d2671)";
+  console.log("Darak mode reducer", ui.drakMode);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -122,7 +123,7 @@ export default function PersistentDrawerRight() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
         })}
-        style={{background:appBarColor}}
+        style={{ background: appBarColor }}
       >
         <Toolbar>
           <Typography variant="h6" noWrap className={classes.title}>
@@ -151,8 +152,8 @@ export default function PersistentDrawerRight() {
                 label="DARK MODE"
                 control={
                   <Switch
-                    checked={darkmode}
-                    onChange={handleChange}
+                    checked={ui.drakMode}
+                    onChange={() => dispatch({ type: CHANGE_DRAK_MODE })}
                     color="Secondary"
                   />
                 }
@@ -215,8 +216,8 @@ export default function PersistentDrawerRight() {
             label="DARK MODE"
             control={
               <Switch
-                checked={darkmode}
-                onChange={handleChange}
+                checked={ui.drakMode}
+                onChange={() => dispatch({ type: CHANGE_DRAK_MODE })}
                 color="Secondary"
               />
             }
