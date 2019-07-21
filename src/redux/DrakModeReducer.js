@@ -1,5 +1,4 @@
-export const CHANGE_DRAK_MODE = "ui/drakMode";
-
+import {CHANGE_DRAK_MODE} from '../action-types';
 const initialState = {
   drakMode: false
 };

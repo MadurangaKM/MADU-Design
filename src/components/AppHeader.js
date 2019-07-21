@@ -21,7 +21,8 @@ import Switch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { useSelector, useDispatch } from "react-redux";
-import { CHANGE_DRAK_MODE } from "../redux/DrakModeReducer";
+import {CHANGE_DRAK_MODE} from '../action-types';
+
 
 const drawerWidth = 240;
 
@@ -114,7 +115,6 @@ export default function PersistentDrawerRight() {
   const appBarColor = ui.drakMode
     ? "linear-gradient(to right, #243B55, #141E30)"
     : "linear-gradient(to right, #c33764, #1d2671)";
-  console.log("Darak mode reducer", ui.drakMode);
   return (
     <div className={classes.root}>
       <CssBaseline />
