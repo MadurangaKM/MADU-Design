@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -21,11 +21,11 @@ import Switch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { useSelector, useDispatch } from "react-redux";
-import {CHANGE_DRAK_MODE} from '../action-types';
-
+import { CHANGE_DRAK_MODE } from "../action-types";
 
 const drawerWidth = 240;
-
+const scrollToRef = ref => window.scrollTo({ top: 0, behavior: "smooth" });
+const useMountEffect = fun => useEffect(fun, []);
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
@@ -35,8 +35,7 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    background: "linear-gradient(to right, #c33764, #1d2671)",
-    boxShadow: "0px 4px 5px 0px"
+    background: "linear-gradient(to right, #c33764, #1d2671)"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -60,7 +59,9 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    background: "rgba(255,255,255,0.2)",
+    border: "1px solid rgba(151,151,151,0.00)"
   },
   drawerHeader: {
     display: "flex",
@@ -71,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    //padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -99,7 +100,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PersistentDrawerRight() {
+export default function PersistentDrawerRight(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -112,6 +113,9 @@ export default function PersistentDrawerRight() {
   function handleDrawerClose() {
     setOpen(false);
   }
+  const myRef = useRef(null);
+
+  useMountEffect(() => scrollToRef(myRef)); // Scroll on mount
   const appBarColor = ui.drakMode
     ? "linear-gradient(to right, #243B55, #141E30)"
     : "linear-gradient(to right, #c33764, #1d2671)";
@@ -132,13 +136,22 @@ export default function PersistentDrawerRight() {
 
           <MediaQuery query="(min-width: 600px)">
             <div className={classes.headerLinks}>
-              <Button href="#text-buttons" className={classes.title}>
+              <Button
+                className={classes.title}
+                onClick={() => scrollToRef(myRef)}
+              >
+                Home
+              </Button>
+              <Button
+                className={classes.title}
+                onClick={props.onChangePortfolio}
+              >
                 Portfolio
-              </Button>{" "}
-              <Button href="#text-buttons" className={classes.title}>
+              </Button>
+              <Button className={classes.title} onClick={props.onChangeAbout}>
                 About Me
               </Button>
-              <Button href="#text-buttons" className={classes.title}>
+              <Button className={classes.title} onClick={props.onChangeContact}>
                 Contact Me
               </Button>
             </div>
@@ -160,7 +173,6 @@ export default function PersistentDrawerRight() {
               />
             </FormGroup>
           </MediaQuery>
-
           <MediaQuery query="(max-width: 600px)">
             <div>
               {" "}
@@ -177,6 +189,7 @@ export default function PersistentDrawerRight() {
           </MediaQuery>
         </Toolbar>
       </AppBar>
+      <div ref={myRef} />
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open
@@ -202,14 +215,26 @@ export default function PersistentDrawerRight() {
             )}
           </IconButton>
         </div>
-
         <Divider />
         <List>
-          {["Portfolio", "About Me", "Contact Me"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button>
+            <ListItemText primary={"Home"} onClick={() => scrollToRef(myRef)} />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary={"Portfolio"}
+              onClick={props.onChangePortfolio}
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary={"About Me"} onClick={props.onChangeAbout} />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              primary={"Contact Me"}
+              onClick={props.onChangeContact}
+            />
+          </ListItem>
         </List>
         <FormGroup row style={{ marginLeft: 20 }}>
           <FormControlLabel
