@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    background: "linear-gradient(to right, #c33764, #1d2671)"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -118,7 +117,7 @@ export default function PersistentDrawerRight(props) {
   useMountEffect(() => scrollToRef(myRef)); // Scroll on mount
   const appBarColor = ui.drakMode
     ? "linear-gradient(to right, #243B55, #141E30)"
-    : "linear-gradient(to right, #c33764, #1d2671)";
+    : "linear-gradient(62deg, #16385B 0%, #00724E 88%)";
   return (
     <div className={classes.root}>
       <CssBaseline />
