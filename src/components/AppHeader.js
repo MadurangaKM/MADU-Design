@@ -48,7 +48,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     paddingRight: 15,
     paddingLeft: 15,
-    color: "#ffff"
   },
   hide: {
     display: "none"
@@ -59,8 +58,6 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    background: "rgba(255,255,255,0.2)",
-    border: "1px solid rgba(151,151,151,0.00)"
   },
   drawerHeader: {
     display: "flex",
@@ -90,8 +87,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row"
   },
   logo: {
-    width: 84,
-    marginTop: 7
+    width: 150,
+    marginTop: 11
   },
   divider: {
     height: 35,
@@ -104,6 +101,7 @@ export default function PersistentDrawerRight(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const ui = useSelector(state => state.ui);
+
   const dispatch = useDispatch();
   function handleDrawerOpen() {
     setOpen(true);
@@ -116,8 +114,15 @@ export default function PersistentDrawerRight(props) {
 
   useMountEffect(() => scrollToRef(myRef)); // Scroll on mount
   const appBarColor = ui.drakMode
-    ? "linear-gradient(to right, #243B55, #141E30)"
-    : "linear-gradient(62deg, #16385B 0%, #00724E 88%)";
+    ? "linear-gradient(100deg, #222222 3%, #21242E 96%)"
+    : "#FFFFFF";
+    const navLinkColor =  ui.drakMode
+    ? "#FFFFFF"
+    : "#333333";
+    const logo =  ui.drakMode
+    ? Images.logoDark
+    : Images.logoLight
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -130,7 +135,7 @@ export default function PersistentDrawerRight(props) {
       >
         <Toolbar>
           <Typography variant="h6" noWrap className={classes.title}>
-            <img src={Images.logo} alt="MaduDesign" className={classes.logo} />
+            <img src={logo} alt="DevUXeye" className={classes.logo} />
           </Typography>
 
           <MediaQuery query="(min-width: 600px)">
@@ -138,19 +143,22 @@ export default function PersistentDrawerRight(props) {
               <Button
                 className={classes.title}
                 onClick={() => scrollToRef(myRef)}
+                style={{ color: navLinkColor }}
               >
                 Home
               </Button>
               <Button
                 className={classes.title}
                 onClick={props.onChangePortfolio}
+                style={{ color: navLinkColor }}
               >
                 Portfolio
               </Button>
-              <Button className={classes.title} onClick={props.onChangeAbout}>
+              <Button className={classes.title} onClick={props.onChangeAbout} style={{ color: navLinkColor }}>
+                
                 About Me
               </Button>
-              <Button className={classes.title} onClick={props.onChangeContact}>
+              <Button className={classes.title} onClick={props.onChangeContact} style={{ color: navLinkColor }}>
                 Contact Me
               </Button>
             </div>
@@ -162,6 +170,7 @@ export default function PersistentDrawerRight(props) {
             <FormGroup row style={{ marginLeft: 20 }}>
               <FormControlLabel
                 label="DARK MODE"
+                style={{ color: navLinkColor }}
                 control={
                   <Switch
                     checked={ui.drakMode}
@@ -176,7 +185,7 @@ export default function PersistentDrawerRight(props) {
             <div>
               {" "}
               <IconButton
-                color="inherit"
+                style={{color: navLinkColor}}
                 aria-label="Open drawer"
                 edge="end"
                 onClick={handleDrawerOpen}
@@ -196,6 +205,7 @@ export default function PersistentDrawerRight(props) {
       >
         <div className={classes.drawerHeader} />
       </main>
+      
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -205,8 +215,9 @@ export default function PersistentDrawerRight(props) {
           paper: classes.drawerPaper
         }}
       >
+        <div style={{background: appBarColor, height: "100%"}}> 
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} style={{color: navLinkColor}}>
             {theme.direction === "rtl" ? (
               <ChevronLeftIcon />
             ) : (
@@ -217,27 +228,30 @@ export default function PersistentDrawerRight(props) {
         <Divider />
         <List>
           <ListItem button>
-            <ListItemText primary={"Home"} onClick={() => scrollToRef(myRef)} />
+            <ListItemText primary={"Home"} onClick={() => scrollToRef(myRef)}  style ={{color: navLinkColor}}/>
           </ListItem>
           <ListItem button>
             <ListItemText
               primary={"Portfolio"}
               onClick={props.onChangePortfolio}
+              style ={{color: navLinkColor}}
             />
           </ListItem>
           <ListItem button>
-            <ListItemText primary={"About Me"} onClick={props.onChangeAbout} />
+            <ListItemText primary={"About Me"} onClick={props.onChangeAbout}  style ={{color: navLinkColor}}/>
           </ListItem>
           <ListItem button>
             <ListItemText
               primary={"Contact Me"}
               onClick={props.onChangeContact}
+              style ={{color: navLinkColor}}
             />
           </ListItem>
         </List>
         <FormGroup row style={{ marginLeft: 20 }}>
           <FormControlLabel
             label="DARK MODE"
+            style ={{color: navLinkColor}}
             control={
               <Switch
                 checked={ui.drakMode}
@@ -247,7 +261,10 @@ export default function PersistentDrawerRight(props) {
             }
           />
         </FormGroup>
+        </div>
       </Drawer>
+    
     </div>
+
   );
 }
