@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    }),
+    })
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     paddingRight: 15,
-    paddingLeft: 15,
+    paddingLeft: 15
   },
   hide: {
     display: "none"
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   drawerHeader: {
     display: "flex",
@@ -116,12 +116,8 @@ export default function PersistentDrawerRight(props) {
   const appBarColor = ui.drakMode
     ? "linear-gradient(100deg, #222222 3%, #21242E 96%)"
     : "#FFFFFF";
-    const navLinkColor =  ui.drakMode
-    ? "#FFFFFF"
-    : "#333333";
-    const logo =  ui.drakMode
-    ? Images.logoDark
-    : Images.logoLight
+  const navLinkColor = ui.drakMode ? "#FFFFFF" : "#333333";
+  const logo = ui.drakMode ? Images.logoDark : Images.logoLight;
 
   return (
     <div className={classes.root}>
@@ -154,11 +150,18 @@ export default function PersistentDrawerRight(props) {
               >
                 Portfolio
               </Button>
-              <Button className={classes.title} onClick={props.onChangeAbout} style={{ color: navLinkColor }}>
-                
+              <Button
+                className={classes.title}
+                onClick={props.onChangeAbout}
+                style={{ color: navLinkColor }}
+              >
                 About Me
               </Button>
-              <Button className={classes.title} onClick={props.onChangeContact} style={{ color: navLinkColor }}>
+              <Button
+                className={classes.title}
+                onClick={props.onChangeContact}
+                style={{ color: navLinkColor }}
+              >
                 Contact Me
               </Button>
             </div>
@@ -185,7 +188,7 @@ export default function PersistentDrawerRight(props) {
             <div>
               {" "}
               <IconButton
-                style={{color: navLinkColor}}
+                style={{ color: navLinkColor }}
                 aria-label="Open drawer"
                 edge="end"
                 onClick={handleDrawerOpen}
@@ -205,7 +208,7 @@ export default function PersistentDrawerRight(props) {
       >
         <div className={classes.drawerHeader} />
       </main>
-      
+
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -215,56 +218,65 @@ export default function PersistentDrawerRight(props) {
           paper: classes.drawerPaper
         }}
       >
-        <div style={{background: appBarColor, height: "100%"}}> 
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose} style={{color: navLinkColor}}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemText primary={"Home"} onClick={() => scrollToRef(myRef)}  style ={{color: navLinkColor}}/>
-          </ListItem>
-          <ListItem button>
-            <ListItemText
-              primary={"Portfolio"}
-              onClick={props.onChangePortfolio}
-              style ={{color: navLinkColor}}
-            />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary={"About Me"} onClick={props.onChangeAbout}  style ={{color: navLinkColor}}/>
-          </ListItem>
-          <ListItem button>
-            <ListItemText
-              primary={"Contact Me"}
-              onClick={props.onChangeContact}
-              style ={{color: navLinkColor}}
-            />
-          </ListItem>
-        </List>
-        <FormGroup row style={{ marginLeft: 20 }}>
-          <FormControlLabel
-            label="DARK MODE"
-            style ={{color: navLinkColor}}
-            control={
-              <Switch
-                checked={ui.drakMode}
-                onChange={() => dispatch({ type: CHANGE_DRAK_MODE })}
-                color="Secondary"
+        <div style={{ background: appBarColor, height: "100%" }}>
+          <div className={classes.drawerHeader}>
+            <IconButton
+              onClick={handleDrawerClose}
+              style={{ color: navLinkColor }}
+            >
+              {theme.direction === "rtl" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            <ListItem button>
+              <ListItemText
+                primary={"Home"}
+                onClick={() => scrollToRef(myRef)}
+                style={{ color: navLinkColor }}
               />
-            }
-          />
-        </FormGroup>
+            </ListItem>
+            <ListItem button>
+              <ListItemText
+                primary={"Portfolio"}
+                onClick={props.onChangePortfolio}
+                style={{ color: navLinkColor }}
+              />
+            </ListItem>
+            <ListItem button>
+              <ListItemText
+                primary={"About Me"}
+                onClick={props.onChangeAbout}
+                style={{ color: navLinkColor }}
+              />
+            </ListItem>
+            <ListItem button>
+              <ListItemText
+                primary={"Contact Me"}
+                onClick={props.onChangeContact}
+                style={{ color: navLinkColor }}
+              />
+            </ListItem>
+          </List>
+          <FormGroup row style={{ marginLeft: 20 }}>
+            <FormControlLabel
+              label="DARK MODE"
+              style={{ color: navLinkColor }}
+              control={
+                <Switch
+                  checked={ui.drakMode}
+                  onChange={() => dispatch({ type: CHANGE_DRAK_MODE })}
+                  color="Secondary"
+                />
+              }
+            />
+          </FormGroup>
         </div>
       </Drawer>
-    
     </div>
-
   );
 }
