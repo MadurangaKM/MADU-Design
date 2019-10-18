@@ -29,7 +29,7 @@ function App() {
             onChangeAbout={() => scrollToRef(myRefAbout)}
             onChangeContact={() => scrollToRef(myRefContact)}
           />
-          <Hero />
+          <Hero onChangeContact={() => scrollToRef(myRefContact)} />
           <div ref={myRef}>
             <Portfolio />
           </div>

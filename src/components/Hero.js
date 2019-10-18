@@ -25,7 +25,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     fontSize: "x-large",
     fontWeight: "300",
-    textAlign: "center"
+    textAlign: "center",
+    marginLeft: 5,
+    marginRight: 5
   },
   button: {
     display: "flex",
@@ -49,7 +51,7 @@ export default function PersistentDrawerRight(props) {
       <span className={classes.slogon} style={{ color: "#ffff" }}>
         Empowering Businesses through UX Solutions
       </span>
-      <Button variant="contained" color="primary" className={classes.button}>
+      <Button variant="contained" color="primary" className={classes.button}  onClick={props.onChangeContact}>
         Contact Us
       </Button>
       <span className="icon-scroll"></span>
@@ -83,7 +85,7 @@ export default function PersistentDrawerRight(props) {
           Empowering Businesses through UX Solutions
         </span>
       </Typist>
-      <Button variant="contained" color="primary" className={classes.button}>
+      <Button variant="contained" color="primary" className={classes.button}  onClick={props.onChangeContact}>
         Contact Us
       </Button>
       <span className="icon-scroll"></span>
