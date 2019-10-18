@@ -1,6 +1,15 @@
-import {CHANGE_DRAK_MODE} from '../action-types';
+import { CHANGE_DRAK_MODE } from "../action-types";
+let nightTimeStart = 18;
+let nightTimeEnd = 6;
+let current = new Date();
+let currentHour = current.getHours();
+let nowTime;
+currentHour >= nightTimeStart || currentHour <= nightTimeEnd
+  ? (nowTime = true)
+  : (nowTime = false);
+
 const initialState = {
-  drakMode: false
+  drakMode: nowTime
 };
 
 export default (state = initialState, action) => {
