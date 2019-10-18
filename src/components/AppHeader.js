@@ -135,7 +135,7 @@ export default function PersistentDrawerRight(props) {
             <img src={logo} alt="DevUXeye" className={classes.logo} onClick={() => scrollToRef(myRef)} />
           </Typography>
 
-          <MediaQuery query="(min-width: 600px)">
+          <MediaQuery query="(min-width: 850px)">
             <div className={classes.headerLinks}>
               <Button
                 className={classes.title}
@@ -185,7 +185,7 @@ export default function PersistentDrawerRight(props) {
               />
             </FormGroup>
           </MediaQuery>
-          <MediaQuery query="(max-width: 600px)">
+          <MediaQuery query="(max-width: 850px)">
             <div>
               {" "}
               <IconButton
