@@ -88,7 +88,8 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     width: 150,
-    marginTop: 11
+    marginTop: 11,
+    cursor:"pointer"
   },
   divider: {
     height: 35,
@@ -131,7 +132,7 @@ export default function PersistentDrawerRight(props) {
       >
         <Toolbar>
           <Typography variant="h6" noWrap className={classes.title}>
-            <img src={logo} alt="DevUXeye" className={classes.logo} />
+            <img src={logo} alt="DevUXeye" className={classes.logo} onClick={() => scrollToRef(myRef)} />
           </Typography>
 
           <MediaQuery query="(min-width: 600px)">
