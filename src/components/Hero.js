@@ -39,7 +39,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: 20,
     height: 46,
     width: 160,
-    letterSpacing: 1
+    letterSpacing: 1,
+    "&:hover": {
+      background: "linear-gradient(126deg, #FF6701 30%, #FFA002 70%)"
+    }
   }
 }));
 export default function PersistentDrawerRight(props) {
