@@ -149,21 +149,21 @@ export default function PersistentDrawerRight(props) {
                 onClick={props.onChangePortfolio}
                 style={{ color: navLinkColor }}
               >
-                Portfolio
+                Our Services
               </Button>
               <Button
                 className={classes.title}
                 onClick={props.onChangeAbout}
                 style={{ color: navLinkColor }}
               >
-                About Me
+                About Us
               </Button>
               <Button
                 className={classes.title}
                 onClick={props.onChangeContact}
                 style={{ color: navLinkColor }}
               >
-                Contact Me
+                Contact Us
               </Button>
             </div>
             <img
@@ -243,21 +243,21 @@ export default function PersistentDrawerRight(props) {
             </ListItem>
             <ListItem button>
               <ListItemText
-                primary={"Portfolio"}
+                primary={"Our Services"}
                 onClick={props.onChangePortfolio}
                 style={{ color: navLinkColor }}
               />
             </ListItem>
             <ListItem button>
               <ListItemText
-                primary={"About Me"}
+                primary={"About Us"}
                 onClick={props.onChangeAbout}
                 style={{ color: navLinkColor }}
               />
             </ListItem>
             <ListItem button>
               <ListItemText
-                primary={"Contact Me"}
+                primary={"Contact Us"}
                 onClick={props.onChangeContact}
                 style={{ color: navLinkColor }}
               />
